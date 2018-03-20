@@ -2,4 +2,5 @@
 
 export(ensure.exists)
 export(filepath2sample)
-export(read.lsm)
+export(read_lsm)
+export(tidy_cmdscale)

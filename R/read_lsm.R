@@ -17,7 +17,7 @@ filepath2sample = function(paths, exts=c(".gz", ".fastq")) {
 #' @param path Path to LSM file on disk
 #' @param sep The column separation character
 #' @export
-read.lsm = function(path, sep='\t', exts.to.remove=c(".gz", ".fastq", ".ct", ".msh")) {
+read_lsm = function(path, sep='\t', exts.to.remove=c(".gz", ".fastq", ".ct", ".msh")) {
   df = read.table(path, header=T, sep=sep, row.names=1, comment.char="")
   rownames(df) = colnames(df) = filepath2sample(rownames(df), exts=exts.to.remove)
   return(as.matrix(df))
