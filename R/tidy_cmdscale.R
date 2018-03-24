@@ -13,7 +13,7 @@ tidy_cmdscale = function(dist, k=9, metadata=NULL, by=NULL) {
     mds.df = as.data.frame(mds$points)
     variance.pct = mds$eig / sum(mds$eig) * 100
     colnames(mds.df) = paste0("PC", 1:ncol(mds.df))
-    mds.df$sample = slot(dist, "Labels")
+    mds.df$sample = methods::slot(dist, "Labels")
     label = paste0("PCoA Axis ", 1:ncol(mds.df), " (", round(variance.pct, 0), "%)")
     if (!is.null(metadata)) {
         mds.df = dplyr::left_join(mds.df, metadata, by=by)
