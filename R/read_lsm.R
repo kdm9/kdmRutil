@@ -22,8 +22,8 @@ read_lsm = function(path, sep='\t', exts.to.remove=c(".gz", ".fastq", ".ct", ".m
     if (is.null(idfile)) {
         df = read.table(path, header=T, sep=sep, row.names=1, comment.char="")
     } else {
-        df = read.table(path, header=F, sep=sep, row.names=F, comment.char="")
-        ids = read.table(idfile, header=F, row.names=F, stringsAsFactors=F)[,1]
+        df = read.table(path, header=F, sep=sep, row.names=NULL, comment.char="")
+        ids = read.table(idfile, header=F, row.names=NULL, stringsAsFactors=F)[,1]
         rownames(df) = ids
     }
     rownames(df) = colnames(df) = filepath2sample(rownames(df), exts=exts.to.remove)
