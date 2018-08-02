@@ -5,12 +5,14 @@
 \title{Reads a labelled square matrix to a correctly named matrix object}
 \usage{
 read_lsm(path, sep = "\\t", exts.to.remove = c(".gz", ".fastq", ".ct",
-  ".msh"))
+  ".msh", ".bam"), idfile = NULL)
 }
 \arguments{
 \item{path}{Path to LSM file on disk}
 
 \item{sep}{The column separation character}
+
+\item{idfile}{Matrix labels are supplied in external file, rather than row/col headers}
 }
 \description{
 Reads a labelled square matrix to a correctly named matrix object

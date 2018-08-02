@@ -16,9 +16,16 @@ filepath2sample = function(paths, exts=c(".gz", ".fastq")) {
 #'
 #' @param path Path to LSM file on disk
 #' @param sep The column separation character
+#' @param idfile Matrix labels are supplied in external file, rather than row/col headers
 #' @export
-read_lsm = function(path, sep='\t', exts.to.remove=c(".gz", ".fastq", ".ct", ".msh")) {
-  df = read.table(path, header=T, sep=sep, row.names=1, comment.char="")
-  rownames(df) = colnames(df) = filepath2sample(rownames(df), exts=exts.to.remove)
-  return(as.matrix(df))
+read_lsm = function(path, sep='\t', exts.to.remove=c(".gz", ".fastq", ".ct", ".msh", ".bam"), idfile=NULL) {
+    if (is.null(idfile)) {
+        df = read.table(path, header=T, sep=sep, row.names=1, comment.char="")
+    } else {
+        df = read.table(path, header=F, sep=sep, row.names=F, comment.char="")
+        ids = read.table(idfile, header=F, row.names=F, stringsAsFactors=F)[,1]
+        rownames(df) = ids
+    }
+    rownames(df) = colnames(df) = filepath2sample(rownames(df), exts=exts.to.remove)
+    return(as.matrix(df))
 }
